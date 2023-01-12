@@ -8,8 +8,6 @@ library(cregg)
 
 ## load data (.rda)
 
-#load() # housedf.rda
-
 #### Baseline models ####
 ####-----------------####
 
@@ -24,29 +22,23 @@ mm_baseline <- cj(housedf, y ~ Origin + Age + Family + Gender + Occupation + Inc
 ## figure 2
 baseline_m <- ggplot(amce_baseline, aes(fct_rev(level), estimate)) +
   theme_light() +
-  geom_point(aes(color=feature), size=1) + 
-  geom_errorbar(aes(ymin=lower, ymax=upper, color=feature), width=0) +
-  #scale_color_manual(values = c("#CCA20C","#F86624","#662E9B","#E23482","#43BCCD","#82C458",
-  #"#79133E", "#142d4c")) +
+  geom_point(size=1) + 
+  geom_errorbar(aes(ymin=lower, ymax=upper), width=0) +
   coord_flip() +
-  labs(title="Figure 2",
-       subtitle="Effects of Applicant Attributes on Probability of Being Selected for Public Housing",
+  labs(subtitle="Effects of Applicant Attributes on Probability of Being Selected for Public Housing",
        caption="Estimates represent the effects of the randomly assigned applicant attribute values on the probability of being preferred for public housing.\nEstimates are based on the benchmark OLS model. Error bars represent 95% confidence intervals.\nThe point estimates without error bars are the reference categories.",
        y="Effect on Pr(Applicant Selected)",
        x="") +
   facet_grid(feature~., switch = "y", scales = "free_y", space = "free_y") +
-  theme(legend.position = "none") +
-  scale_color_grey()
+  theme(legend.position = "none")
 
-#ggsave("Baseline_m.pdf", width = 9, height = 9)
+#ggsave("Figure 2", width = 9, height = 9)
 
 ## figure si.1
 baseline_m_mm <- ggplot(amce_baseline_mm, aes(fct_rev(level), estimate)) +
   theme_light() +
   geom_point(aes(color=feature), size=1) + 
   geom_errorbar(aes(ymin=lower, ymax=upper, color=feature), width=0) +
-  #scale_color_manual(values = c("#CCA20C","#F86624","#662E9B","#E23482","#43BCCD","#82C458",
-  #"#79133E", "#142d4c")) +
   coord_flip() +
   labs(title="Figure SI.1",
        subtitle="Marginal Means of Applicants' Attributes on Preference for Public Housing",
@@ -54,8 +46,7 @@ baseline_m_mm <- ggplot(amce_baseline_mm, aes(fct_rev(level), estimate)) +
        y="Effect on Pr(Applicant Selected)",
        x="") +
   facet_grid(feature~., switch = "y", scales = "free_y", space = "free_y") +
-  theme(legend.position = "none") +
-  scale_color_grey()
+  theme(legend.position = "none")
 
 #ggsave("Figure_SI.1-Baseline_m_mm.pdf", width = 9, height = 9)
 
@@ -79,21 +70,20 @@ pdamce <- position_dodge(0.4) # move them .05 to the left and right
 amce_pubcost <- subset(amce_pubcost, feature == "Origin")
 
 ## figure 3
-baseline_pubcost_m <- ggplot(amce_pubcost, aes(x=level, y=estimate, color=pubcost, linetype=pubcost)) +
+baseline_pubcost_m <- ggplot(amce_pubcost, aes(x=level, y=estimate, linetype=pubcost)) +
   theme_light() +
   geom_point(aes(shape=pubcost),position=pdamce) +
   geom_errorbar(aes(ymin=lower, ymax=upper), width=.1, position=pdamce) +
   coord_flip() +
-  labs(title="Figure 3",
-       subtitle="Effects of Applicants' Origins on Probability of Being Selected for Public Housing:\nConditional on Pubic Cost Intervention",
+  labs(subtitle="Effects of Applicants' Origins on Probability of Being Selected for Public Housing:\nConditional on Pubic Cost Intervention",
        caption="Estimates represent the effects of the randomly assigned origin on the probability of being preferred for public housing (averaged across the other attributes).\nEstimates are based on the benchmark OLS model. Error bars represent 95% confidence intervals.\nThe point estimates without error bars are the reference categories.",
        y="Effect on Pr(Applicant Selected)",
        x="") +
   facet_grid(feature~., switch = "y", scales = "free_y", space = "free_y") +
-  scale_color_grey() + theme(legend.title = element_blank(),
+  theme(legend.title = element_blank(),
                              legend.position = "top")
 
-#ggsave("baseline_pubcost_m.pdf", width = 9, height = 9)
+#ggsave("Figure 3", width = 9, height = 9)
 
 
 #### charge analysis ####
