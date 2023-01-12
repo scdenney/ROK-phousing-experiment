@@ -1,6 +1,6 @@
 ## ROK-phousing-experiment
 
-Replication materials for “Welfare chauvinism among co-ethnics: Evidence from a conjoint experiment in South Korea," a paper by Peter Ward and Steven Denney of the Unviersity of Vienna.
+Replication materials for “Welfare chauvinism among co-ethnics: Evidence from a conjoint experiment in South Korea," a paper by Peter Ward and Steven Denney of the University of Vienna.
 
 Source and citation:
 >Ward, P. & Denney, S. (2021). Welfare chauvinism among co-ethnics: Evidence from a conjoint experiment in South Korea. _International Migration_. https://doi.org/10.1111/imig.12937
